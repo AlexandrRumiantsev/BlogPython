@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="ru">
+<head>
+    
+    <title>{{ request.path }}</title>
+    <meta charset="utf-8">  
+    <link rel="stylesheet"  href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet"  href="{% static 'css/style.css' %}">
+    <link rel="stylesheet"  href="{% static 'css/grid.css'  %}">
+
+
+</head>
+<body>
+<div class="myHeader">
+<!--==============================header=================================-->
+
+              
+              
+                <ul class="sf-menu" style="list-style:none;">
+                    <li class="current"><a href="{% url 'post_list' %}">Главная</a></li>
+                    <li class="current"><a href="index.html">Регистрация</a></li>
+                    <li class="current"><a target="_blank" href="/admin">Авторизация</a></li>
+                    <li class="current"><a href="index.html">Модерация</a></li>
+                 </ul>  
+ 
+
+<a  href="{%  if user.is_authenticated %} {% url 'user_detail' user.id %} {%  endif %}">
+    <div class="btnLog">{{ request.user }}</div>
+</a>
+<a  href=/admin/logout/><div class="btnLog">Выход</div></a>
+
+             
+</div>      
+     	 
+<!--==============================content================================-->
+
+
+<div style="padding-top:70px;">
+           <img class='mainImg'
+src={% static 'images/python-developer.png' %}>
+	<div class='mainBlock'>
+
+{% block content %}
+{% endblock %}
+
+</div>
+</div>
+
+
+<!--==============================footer=================================-->		
+	
+<div class='myFooter' >	
+&copy; 2017 | <a href="index-6.html">Александр Румянцев</a> <br></p>
+</div>
+       
+</body>
+
+
+</html>
+

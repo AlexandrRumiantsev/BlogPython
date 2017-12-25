@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<title> {{ request.user.name }} </title>
+    <div>
+        {% if post.published_date %}
+            <div>
+            {{ post.author}}
+                {{ post.published_date }}
+            </div>
+        {% endif %}
+        <div>{{ post.title }}</div>
+        <div>{{ post.text|linebreaksbr }}</div>
+    </div>
+{% endblock %}
+
