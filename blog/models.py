@@ -19,3 +19,20 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class UserProfile(models.Model):
+    name = models.ForeignKey('auth.User')
+    family = models.CharField(max_length=20)
+    years = models.CharField(max_length=2)
+    email = models.EmailField(max_length=20)
+    skype = models.CharField(max_length=20)
+    flame = models.CharField(max_length=20)
+    towm = models.CharField(max_length=20)
+    avatar = models.ImageField(upload_to=u'./media/img/', verbose_name=u'Аватар', blank=False)
+
+    def create(self):
+        self.save()
+
+
+
+
