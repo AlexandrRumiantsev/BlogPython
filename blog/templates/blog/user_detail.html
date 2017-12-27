@@ -3,7 +3,7 @@
 {% block content %}
     <div>
             <div>
-                Пользователь:
+                Личный кабинет пользователя:
             {{ request.user }}
                 <br>
                 Имя:
@@ -13,9 +13,7 @@
             {{ request.user.last_name }}
                <br> E-mail:
             {{ request.user.email }}
-                <br>
-                Статус активности профиля:
-            {{ request.is_active }}
+
             <br>
                 Посты пользователя:<br>
             {{ post.published_date }}

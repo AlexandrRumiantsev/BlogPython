@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
     url(r'^user/(?P<pk>\d+)/$', views.user_detail, name='user_detail'),
     url(r'^register/$', views.RegisterFormView.as_view()),
+    url(r'^new/', views.newPublication, name='new'),
     ]

@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load staticfiles %}
+<!--
+as_p - вывод данных в строку из БД
+as_table - вывод данных таблицей из БД
+-->
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet"  href="{% static 'css/style.css' %}">
 </head>
-<body>
-$END$
-</body>
-</html>
+<div class="sendForm">
+    <form method="post"/>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+</div>
