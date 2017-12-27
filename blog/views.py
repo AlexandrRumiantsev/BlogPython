@@ -60,5 +60,5 @@ class RegisterFormView(FormView):
     def form_valid(self, form):
         # send_mail()
         form.save()
-        
+
         return super(RegisterFormView, self).form_valid(form)
