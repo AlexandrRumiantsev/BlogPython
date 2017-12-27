@@ -28,7 +28,8 @@ def user_detail(request, pk):
     user = get_object_or_404(User, pk=pk)
     return render(request, 'blog/user_detail.html', {'user': user, 'post': post})
 
-#Функция для добавления новых публикаций
+#Функция для добавления новых публикаци
+from django.http import HttpResponseRedirect
 def newPublication(request):
     form = PostForm()
     ctx = {}
@@ -37,9 +38,9 @@ def newPublication(request):
         if form.is_valid():
             obj = form.save()
             ctx = {'obj': obj}
+            return HttpResponseRedirect('../')
+
     ctx.update({'form': form})
-
-
     return render(request, 'blog/send_post.html', ctx)
 
 
@@ -51,15 +52,13 @@ from django.contrib.auth.forms import UserCreationForm
 
 class RegisterFormView(FormView):
     form_class = UserCreationForm
-    # Ссылка, на которую будет перенаправляться пользователь в случае успешной регистрации.
-    # В данном случае указана ссылка на страницу входа для зарегистрированных пользователей.
+
     success_url = "/"
-    # Шаблон, который будет использоваться при отображении представления.
+
     template_name = "register.html"
 
     def form_valid(self, form):
-        # Создаём пользователя, если данные в форму были введены корректно.
-        form.save()
         # send_mail()
-        # Вызываем метод базового класса
+        form.save()
+        
         return super(RegisterFormView, self).form_valid(form)
