@@ -9,6 +9,14 @@
             {% csrf_token %}
         </form>
         <div onclick = 'document.getElementById("myform").submit();'>Удалить</div>
+
+            <form id = "edit" action="/edit/{{ post.id }}/" method = "get" style = "display:none;">
+            {% csrf_token %}
+        </form>
+        <div onclick = 'document.getElementById("edit").submit();'>Редактировать</div>
+
+
+
         <p>Автор: <br>{{ post.author }}</p>
         <p>Дата публикации: <br> {{ post.published_date }}</p>
         <p>Заголовок:<br><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></p>

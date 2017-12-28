@@ -11,7 +11,6 @@ from blog.forms import PostForm
 from .models import Post
 
 
-
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
@@ -29,8 +28,11 @@ def user_detail(request, pk):
     user = get_object_or_404(User, pk=pk)
     return render(request, 'blog/user_detail.html', {'user': user, 'post': post})
 
-#Функция для добавления новых публикаци
+
+# Функция для добавления новых публикаци
 from django.http import HttpResponseRedirect
+
+
 def newPublication(request):
     form = PostForm()
     ctx = {}
@@ -45,19 +47,22 @@ def newPublication(request):
     return render(request, 'blog/send_post.html', ctx)
 
 
-def delete(request):
-    if request.get("autor"):
-        autorForm = request.GET.get("autor")
-        postForm  = request.GET.get("post")
-        titleForm = request.GET.get("title")
-        pdb.set_trace()
-        Post.objects.filter(author=autorForm,post=postForm,title=titleForm).delete()
-        return HttpResponse(request.path)
+def delete(request, pk):
+    if request.method == 'POST':
+        obj = Post.objects.get(id=pk)
+        obj.delete()
+    return HttpResponseRedirect('/')
+
+
+def edit(request, pk):
+    if request.method == 'GET':
+        massive = get_object_or_404(Post, pk=pk)
+        return render(request, 'blog/edit.html', {'massive': massive})
 
 
 # Регистрация
 
-from django.views.generic.edit import FormView, FormView, FormView
+from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 
 

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<!--
+as_p - вывод данных в строку из БД
+as_table - вывод данных таблицей из БД
+-->
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"  href="{% static 'css/style.css' %}">
+</head>
+Редактирование статьи
+<div class="sendForm">
+    <form method="get">
+        {% csrf_token %}
+        Дата создания
+        {{ massive.published_date }}<br>
+        {{ massive.author }}<br>
+        Заголовок<br>
+        <input value="{{massive.title}}">
+        <br>Текст<br>
+        <input value="{{massive.text}}">
+        <br><input type="submit" value="Сохранить">
+    </form>
+</div>
