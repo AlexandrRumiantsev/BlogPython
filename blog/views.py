@@ -11,6 +11,7 @@ from blog.forms import PostForm
 from .models import Post
 
 
+
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
@@ -42,6 +43,16 @@ def newPublication(request):
 
     ctx.update({'form': form})
     return render(request, 'blog/send_post.html', ctx)
+
+
+def delete(request):
+    if request.get("autor"):
+        autorForm = request.GET.get("autor")
+        postForm  = request.GET.get("post")
+        titleForm = request.GET.get("title")
+        pdb.set_trace()
+        Post.objects.filter(author=autorForm,post=postForm,title=titleForm).delete()
+        return HttpResponse(request.path)
 
 
 # Регистрация

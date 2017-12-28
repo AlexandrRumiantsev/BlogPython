@@ -3,7 +3,11 @@
 
 {% block content %}
 {% for post in posts %}
-    <div>
+    <div class='mainBlock'>
+
+        <a href="#?autor={{post.author}}&&post={{post.text}}&&title={{post.title}}">
+            Удалить
+        </a>
         <p>Автор: <br>{{ post.author }}</p>
         <p>Дата публикации: <br> {{ post.published_date }}</p>
         <p>Заголовок:<br><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></p>
